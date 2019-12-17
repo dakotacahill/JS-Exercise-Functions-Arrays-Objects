@@ -79,20 +79,17 @@ function getName(objects) {
  *         where `{name}` is the name passed into `makeSmartPerson`.
 */
 function makeSmartPerson(name) {
-  const object = { 
+  const object = {
     name: name,
+    sum: function(num1, num2) {
+      return num1 + num2;
+    },
+    speak: function(){
+      return `Hello, my name is ${name}`
+    }
   }
-
-const sum = (num1, num2) => { 
-  return num1 + num2
+  return object;
 }
-
-const speak = () => {
-  return 'Hello, my name is ${name}'
-}
-return object;
-}
-
 
 
 
@@ -152,10 +149,12 @@ function get3rdCar(inventory) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoByIndex(inventory, index) {
-  const getFourth = inventory.find((item, index) => {
-    return index[3]
-  })
-  return `This is a is a ${getFourth.car_make} ${getFourth.car_model}`
+  for(let i = 0; i < inventory.length; i++){
+    if(inventory[i] === index){
+      return inventory[i];
+    }
+  }
+  return `This is a ${inventory[index].car_make} ${inventory[index].car_model}`
 }
 
 /**
@@ -190,7 +189,7 @@ function getLastCarInfo(inventory) {
  * it will return `This is a Lincoln Navigator`.
 */
 function getCarInfoById(inventory, id) {
-  return `This is a ${inventory[1].car_make} ${inventory[1].car_model}`
+  return `This is a ${inventory[id-1].car_make} ${inventory[id-1].car_model}`
 }
 
 /**
@@ -202,7 +201,7 @@ function getCarInfoById(inventory, id) {
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
 function sortCarInventory(inventory) {
-  return inventory.sort((a, b) => {return a-b});
+  return inventory.sort((a, b) => (a.car_model > b.car_model) ? 1 : -1)
 }
 
 /**
