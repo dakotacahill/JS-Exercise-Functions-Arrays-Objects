@@ -202,7 +202,7 @@ function getCarInfoById(inventory, id) {
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
 function sortCarInventory(inventory) {
-  return inventory.sort((a, b) {return a-b});
+  return inventory.sort((a, b) => {return a-b});
 }
 
 /**
@@ -234,9 +234,17 @@ function getModelYears(inventory) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
-  /* code here */
+function getOlderCars(inventory, car_year) {
+  let allCars = [];
+  for(let i = 0; i < inventory.length; i++) {
+    if(inventory[i].car_year <= car_year) {
+      allCars.push(inventory[i]);
+    }
+  }
+  return allCars;
 }
+
+
 
 /**
  * ### Challenge `getGermanCars`
@@ -249,8 +257,14 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
+function getGermanCars(inventory) {
+  let allCars = [];
+  for(let i = 0; i < inventory.length; i++){
+    if(inventory[i].car_make === 'Audi' || inventory[i].car_make === 'Mercedes-Benz' || inventory[i].car_make === 'Volkswagen' || inventory[i].car_make ==='BMW'){
+      allCars.push(inventory[i]);
+    }
+  }
+  return allCars; // I think this woreks but does the original array get mutated? 
 }
 
 /**
@@ -271,9 +285,9 @@ function getGermanCars(/* code here */) {
  *   return num * 2
  * }
 */
-const sum = null; // code here!
-const addFive = null; // code here!
-const argTimesTwo = null; // code here!
+const sum = (a, b) => a+b;; // code here!
+const addFive = (num) => num + 5; // code here!
+const argTimesTwo = (num) => num * 2;; // code here!
 
 /**
  * ### Challenge `carMaker`
@@ -288,8 +302,15 @@ const argTimesTwo = null; // code here!
  *         (1) causes the odometer in the object to be increased by the distance,
  *         (2) returns the updated value of the `odometer`.
 */
-function carMaker(/* code here */) {
-  /* code here */
+function carMaker(num1) {
+  let object = {
+    odometer: num1,
+     drive: function(distance) {
+      this.odometer += distance;
+      return this.odometer;
+    }
+  }
+  return object;
 }
 
 /// ////// END OF CHALLENGE /////////
